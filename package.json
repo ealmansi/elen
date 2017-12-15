@@ -1,10 +1,11 @@
 {
   "name": "elen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ELEN - Efficient Lexicographic Encoding of Numbers. For JavaScript.",
   "main": "dist/elen.js",
   "scripts": {
-    "build": "npx browserify src/elen.js --s elen -o dist/elen.js",
+    "start": "npx watchify src/elen.js --s elen -o dist/elen.js",
+    "build": "npx browserify src/elen.js --s elen | npx uglify-es -c > dist/elen.min.js",
     "test": "npx mocha"
   },
   "repository": {
@@ -30,7 +31,7 @@
     "browserify": "^14.5.0",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "uglify-js": "^3.2.2",
+    "uglify-es": "^3.2.2",
     "watchify": "^3.9.0"
   }
 }
