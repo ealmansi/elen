@@ -1,0 +1,36 @@
+{
+  "name": "elen",
+  "version": "1.0.0",
+  "description": "ELEN - Efficient Lexicographic Encoding of Numbers. For JavaScript.",
+  "main": "dist/elen.js",
+  "scripts": {
+    "build": "npx browserify src/elen.js --s elen -o dist/elen.js",
+    "test": "npx mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ealmansi/elen.git"
+  },
+  "keywords": [
+    "javascript",
+    "efficient",
+    "lexicographic",
+    "encoding",
+    "numbers",
+    "peter",
+    "seymour"
+  ],
+  "author": "Emilio Almansi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ealmansi/elen/issues"
+  },
+  "homepage": "https://github.com/ealmansi/elen#readme",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "uglify-js": "^3.2.2",
+    "watchify": "^3.9.0"
+  }
+}
