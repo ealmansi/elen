@@ -1,5 +1,4 @@
 /***
- * @license
  * https://github.com/ealmansi/elen
  * Copyright (c) 2017 Emilio Almansi
  * Distributed under the MIT software license, see the accompanying
@@ -14,17 +13,17 @@ const MAX_MANTISSA = 4503599627370495
  * and mantissa in its binary64 representation.
  * 
  * @param {object} - Object containing sign, exponent, and mantissa.
- * @throws {InvalidArgumentException}
+ * @throws {Error}
  */
 function construct({ sign, exponent, mantissa }) {
   if (sign !== 0 && sign !== 1) {
-    throw new InvalidArgumentException(`Invalid value for sign: ${sign}.`)
+    throw new Error(`Invalid value for sign: ${sign}.`)
   }
   if (typeof exponent !== 'number' || exponent < 0 || MAX_EXPONENT < exponent) {
-    throw new InvalidArgumentException(`Invalid value for exponent: ${exponent}.`)
+    throw new Error(`Invalid value for exponent: ${exponent}.`)
   }
   if (typeof mantissa !== 'number' || mantissa < 0 || MAX_MANTISSA < mantissa) {
-    throw new InvalidArgumentException(`Invalid value for mantissa: ${mantissa}.`)
+    throw new Error(`Invalid value for mantissa: ${mantissa}.`)
   }
   const buffer = new ArrayBuffer(8)
   const floatArray = new Float64Array(buffer)
@@ -41,11 +40,11 @@ function construct({ sign, exponent, mantissa }) {
  * 
  * @param {number} n - Number to deconstruct.
  * @returns {object}
- * @throws {InvalidArgumentException}
+ * @throws {Error}
  */
 function deconstruct(n) {
   if (typeof n !== 'number') {
-    throw new InvalidArgumentException(`Value is not of type number: ${n}.`)
+    throw new Error(`Value is not of type number: ${n}.`)
   }
   const buffer = new ArrayBuffer(8)
   const floatArray = new Float64Array(buffer)

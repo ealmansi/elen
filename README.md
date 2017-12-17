@@ -30,8 +30,8 @@ That's where ELEN comes in. ELEN provides a way of textually representing number
 
 ```
 assert.deepEqual(
-  nums.sort((a, b) => a - b).map(elen.encode),
-  nums.map(elen.encode).sort()
+  nums.map(elen.encode).sort().map(elen.decode),
+  nums.sort((a, b) => a - b)
 )
 ```
 
@@ -64,7 +64,7 @@ elen.decode(encoded[4]) // 42
 <html>
   <head>
     ...
-    <script src="https://cdn.rawgit.com/ealmansi/elen/master/dist/elen-1.0.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/ealmansi/elen/master/dist/elen-1.0.5.min.js"></script>
   </head>
   ...
 </html>

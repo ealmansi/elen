@@ -58,42 +58,93 @@ describe('ELEN - Efficient Lexicographic Encoding of Numbers', () => {
 
   describe('#encode() #decode()', () => {
     const TEST_CASES = [
-      -9,
-      Infinity,
-      1234567891,
-      -Infinity,
-      -1,
-      0,
-      -1234567891,
-      -0,
-      -5e-324,
-      2,
-      -1234567890,
-      9,
-      -1234567889,
-      1234567890,
-      -10,
       11,
-      7,
-      1234567889,
-      5e-324,
-      123,
-      -11,
-      1,
-      10,
-      -2,
-      1e10,
-      -1e10,
       9e200,
-      -9e200,
-      4e-150,
+      1234567891,
+      -0,
+      1,
+      -2,
+      -10,
+      7,
+      10,
       -4e-150,
+      9,
+      1234567889,
+      -9,
+      -1234567890,
+      1e10,
+      -1234567889,
+      -1e10,
+      Infinity,
+      -1234567891,
+      2,
+      5e-324,
+      4e-150,
+      123,
+      -1,
+      -9e200,
+      1234567890,
+      0,
+      -Infinity,
+      -11,
+      -5e-324,
     ]
+
+    const compareNumbers = (a, b) => {
+      // Arbitrarily choose -0 to be less than 0 in order to
+      // work around the following JavaScript limitations:
+      // 1) -0 === 0
+      // 2) sort() is not guaranteed to be a stable sort.
+      if (Object.is(a, -0) && Object.is(b, 0)) {
+        return -1
+      }
+      if (Object.is(a, 0) && Object.is(b, -0)) {
+        return 1
+      }
+      return a - b
+    }
 
     it('encode and decode should be inverse functions', () => {
       for (let n of TEST_CASES) {
         assert.equal(elen.decode(elen.encode(n)), n)
       }
+    })
+
+    it('ELEN encoding should preserve order', () => {
+      assert.deepEqual(
+        TEST_CASES.map(elen.encode).sort().map(elen.decode),
+        TEST_CASES.sort(compareNumbers)
+      )
+    })
+  })
+
+  describe('#encode() #decode() error handling', () => {
+    it('encode should throw if given input of type other than number', () => {
+      assert.throws(() => elen.encode(''))
+      assert.throws(() => elen.encode(null))
+      assert.throws(() => elen.encode(undefined))
+      assert.throws(() => elen.encode({}))
+      assert.throws(() => elen.encode(() => {}))
+    })
+
+    it('decode should throw if given input of type other than string', () => {
+      assert.throws(() => elen.decode(123.456))
+      assert.throws(() => elen.decode(null))
+      assert.throws(() => elen.decode(undefined))
+      assert.throws(() => elen.decode({}))
+      assert.throws(() => elen.decode(() => {}))
+    })
+
+    it('decode should throw if given invalid string input', () => {
+      assert.throws(() => elen.decode(''))
+      assert.throws(() => elen.decode('abcdefg'))
+      assert.throws(() => elen.decode('<'))
+      assert.throws(() => elen.decode('>'))
+      assert.throws(() => elen.decode('<;;0'))
+      assert.throws(() => elen.decode('<;;01;0'))
+      assert.throws(() => elen.decode('<;0;0'))
+      assert.throws(() => elen.decode('<;;212'))
+      assert.throws(() => elen.decode('>0;212'))
     })
   })
 })

@@ -1,6 +1,6 @@
 {
   "name": "elen",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ELEN - Efficient Lexicographic Encoding of Numbers. For JavaScript.",
   "main": "src/elen.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "http-server": "^0.10.0",
     "jsdoc": "^3.5.5",
     "mocha": "^4.0.1",
+    "mocha-eslint": "^4.1.0",
     "uglify-es": "^3.2.2",
     "uglify-js": "^3.2.2",
     "watchify": "^3.9.0"
