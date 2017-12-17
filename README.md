@@ -34,7 +34,7 @@ elen.decode(encoded[4]) // 42
 ##### Script Tag
 
 ```
-<script src="https://cdn.rawgit.com/ealmansi/elen/491b4b00/dist/elen.min.js"></script>
+<script src="https://cdn.rawgit.com/ealmansi/elen/master/dist/elen-1.0.4.min.js"></script>
 ```
 
 ### Documentation
@@ -47,4 +47,4 @@ npm run docs
 
 #### Browse online
 
-Automatically generated [jsdocs](https://cdn.rawgit.com/ealmansi/elen/05d4c1ff/docs/global.html#encode).
+Automatically generated [jsdocs](https://cdn.rawgit.com/ealmansi/elen/master/docs/global.html#encode).

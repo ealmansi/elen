@@ -37,19 +37,6 @@ function encode(n) {
   return r
 }
 
-function elen(n) {
-  let r = ''
-  if (n > 0) {
-    r += LENGTH_MARKER
-  }
-  const s = n.toString()
-  if (s.length > 1) {
-    r += elen(s.length)
-  }
-  r += s
-  return r
-}
-
 /**
  * Decodes an ELEN encoded number back into the original number.
  * See [#encode()]{@link encode}.
@@ -68,7 +55,23 @@ function decode(s) {
   return binary64.construct({ sign, exponent, mantissa })
 }
 
+function elen(n) {
+  let r = ''
+  if (n > 0) {
+    r += LENGTH_MARKER
+  }
+  const s = n.toString()
+  if (s.length > 1) {
+    r += elen(s.length)
+  }
+  r += s
+  return r
+}
+
 function parseSign(s, i) {
+  if (s.length <= i) {
+    throw new InvalidArgumentException(`Value is not a valid ELEN encoded number: ${s}.`)
+  }
   if (s[i] === SIGN_NON_NEGATIVE) {
     return { signLength: 1, sign: 0 }
   }
@@ -79,6 +82,9 @@ function parseSign(s, i) {
 }
 
 function parseExponent(s, sign, i) {
+  if (s.length <= i) {
+    throw new InvalidArgumentException(`Value is not a valid ELEN encoded number: ${s}.`)
+  }
   if (s[i] === '0') {
     return { exponentLength: 1, exponent: sign === 0 ? 0 : binary64.MAX_EXPONENT }
   }
@@ -101,6 +107,9 @@ function parseExponent(s, sign, i) {
 }
 
 function parseMantissa(s, sign, i) {
+  if (s.length <= i) {
+    throw new InvalidArgumentException(`Value is not a valid ELEN encoded number: ${s}.`)
+  }
   if (s[i] === '0') {
     return { mantissaLength: 1, mantissa: sign === 0 ? 0 : binary64.MAX_MANTISSA }
   }
