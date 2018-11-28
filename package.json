@@ -1,6 +1,6 @@
 {
   "name": "elen",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ELEN - Efficient Lexicographic Encoding of Numbers. For JavaScript.",
   "main": "src/elen.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "eslint": "^4.13.1",
     "http-server": "^0.10.0",
     "jsdoc": "^3.5.5",
+    "lodash": "4.17.5",
     "mocha": "^4.0.1",
     "mocha-eslint": "^4.1.0",
     "npm-check-updates": "2.15.0",
