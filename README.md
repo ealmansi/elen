@@ -64,7 +64,7 @@ elen.decode(encoded[4]) // 42
 <html>
   <head>
     ...
-    <script src="https://cdn.rawgit.com/ealmansi/elen/master/dist/elen-1.0.8.min.js"></script>
+    <script src="https://cdn.rawgit.com/ealmansi/elen/master/dist/elen-1.0.9.min.js"></script>
   </head>
   ...
 </html>
