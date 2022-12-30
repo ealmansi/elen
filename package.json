@@ -39,7 +39,7 @@
     "http-server": "^0.10.0",
     "jsdoc": "^3.6.3",
     "lodash": "^4.17.15",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "mocha-eslint": "^4.1.0",
     "npm-check-updates": "^3.1.21",
     "uglify-es": "^3.3.9",
